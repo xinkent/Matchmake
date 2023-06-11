@@ -48,9 +48,9 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Match Settings'), actions: [
+      appBar: AppBar(title: const Text('試合設定'), actions: [
         TextButton(
-          child: const Text('Next'),
+          child: const Text('次へ'),
           onPressed: () {
             if (_courtCount == null) {
               showDialog<void>(

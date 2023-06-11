@@ -24,11 +24,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            label: 'Match',
+            label: '試合',
             icon: Icon(Icons.sports_tennis),
           ),
           BottomNavigationBarItem(
-            label: 'Member',
+            label: 'メンバー',
             icon: Icon(Icons.person),
           ),
         ],

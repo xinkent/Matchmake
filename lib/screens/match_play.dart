@@ -45,7 +45,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
     return Column(children: [
       SizedBox(height: 10),
       Text(
-        'Match ${matchCount + 1}',
+        '第${matchCount + 1}試合',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
       ),
       Flexible(
@@ -55,7 +55,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
             final matchMembers = matchMembersList[index];
             return Column(
               children: [
-                Text('Court ${index + 1}'),
+                Text('コート ${index + 1}'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

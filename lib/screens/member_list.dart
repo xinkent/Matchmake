@@ -25,7 +25,7 @@ class _MyWidgetState extends State<MemberListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Members'),
+        title: const Text('メンバー一覧'),
         actions: [
           IconButton(
             icon: Icon(Icons.person_add),

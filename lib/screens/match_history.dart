@@ -9,7 +9,7 @@ class MatchHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Play Count')),
+      appBar: AppBar(title: const Text('試合参加回数')),
       body: ListView.builder(
           itemCount: playingMembers.length,
           itemBuilder: (context, index) {

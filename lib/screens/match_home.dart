@@ -32,7 +32,7 @@ class _MatchHomePageState extends State<MatchHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Match'),
+        title: Text('MatchMake'),
         actions: [
           IconButton(
             icon: const Icon(Icons.person),
@@ -56,6 +56,7 @@ class _MatchHomePageState extends State<MatchHomePage> {
           updateJoinMembers: updateJoinMembers,
           updateStarted: updateStarted,
           updateCourtCount: updateCourtCount,
+          navigateToMemberListPage: navigateToMemberListPage,
         ),
         child: MatchPlayPage(
           courtCount: _courtCount,
