@@ -72,6 +72,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
                 }
               }
               if (joinMembers.length < _courtCount! * 4) {
+                // 設定人数が足りない場合
                 showDialog<void>(
                     context: context,
                     barrierColor: Colors.white.withOpacity(0.3),
@@ -79,6 +80,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
                       return GeneralErrorDialog(message: "設定人数が足りません");
                     });
               } else {
+                // 設定OKの場合
                 showDialog<void>(
                     context: context,
                     barrierColor: Colors.white.withOpacity(0.3),
