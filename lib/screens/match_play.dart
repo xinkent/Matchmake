@@ -35,13 +35,6 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<int>> dropDownItemList = [];
-    for (Member member in widget.joinMembers) {
-      DropdownMenuItem<int> dropDownItem =
-          DropdownMenuItem<int>(value: member.id, child: Text(member.name));
-      dropDownItemList.add(dropDownItem);
-    }
-
     return Column(children: [
       SizedBox(height: 10),
       Text(
