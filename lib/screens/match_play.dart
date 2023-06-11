@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matchmake/stores/empty_playing_member.dart';
 import 'package:matchmake/stores/match_members.dart';
 import 'package:matchmake/stores/playing_member.dart';
 import 'package:matchmake/widgets/general_error_dialog.dart';
@@ -24,6 +25,7 @@ class MatchPlayPage extends StatefulWidget {
 }
 
 class _MatchPlayPageState extends State<MatchPlayPage> {
+  // 試合参加メンバー(コート数 x 4人)
   late List<MatchMembers> matchMembersList;
   int matchCount = 0;
 
@@ -35,13 +37,6 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<int>> dropDownItemList = [];
-    for (Member member in widget.joinMembers) {
-      DropdownMenuItem<int> dropDownItem =
-          DropdownMenuItem<int>(value: member.id, child: Text(member.name));
-      dropDownItemList.add(dropDownItem);
-    }
-
     return Column(children: [
       SizedBox(height: 10),
       Text(
@@ -136,7 +131,14 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
           // 次の試合ボタン
           IconButton(
             onPressed: () {
-              if (existSameMembers()) {
+              if (existEmptyMember()) {
+                showDialog<void>(
+                    context: context,
+                    barrierColor: Colors.white.withOpacity(0.3),
+                    builder: (_) {
+                      return GeneralErrorDialog(message: 'メンバーが選択されていません');
+                    });
+              } else if (existSameMembers()) {
                 showDialog<void>(
                     context: context,
                     barrierColor: Colors.white.withOpacity(0.3),
@@ -222,6 +224,18 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
         }
       }
     });
+  }
+
+  bool existEmptyMember() {
+    for (MatchMembers matchMembers in matchMembersList) {
+      for (PlayingMember member in matchMembers.getAllMembers()) {
+        if (member is EmptyPlayingMember) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   bool existSameMembers() {
