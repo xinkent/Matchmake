@@ -38,11 +38,12 @@ class _MatchHomePageState extends State<MatchHomePage> {
             icon: const Icon(Icons.person),
             onPressed: navigateToMemberListPage,
           ),
-          if (_isStarted)
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: navigateToMatchSettingPage,
-            ),
+          // 今の設計だと試合実施中に参加者が削除された際にエラーが起きるので、設定ボタンは表示させないようにした。
+          // if (_isStarted)
+          //   IconButton(
+          //     icon: const Icon(Icons.settings),
+          //     onPressed: navigateToMatchSettingPage,
+          //   ),
           if (_isStarted)
             IconButton(
               icon: const Icon(Icons.history),
