@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:matchmake/services/select_balance_join_count_strategy.dart';
+import 'package:matchmake/services/select_random_member_strategy.dart';
 import 'package:matchmake/stores/empty_playing_member.dart';
 import 'package:matchmake/stores/match_members.dart';
 import 'package:matchmake/stores/playing_member.dart';
@@ -32,7 +34,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
   @override
   void initState() {
     // 参加メンバーの中からランダムに抽出する
-    randomChoiceMatchMembers();
+    chooseMatchMembers();
   }
 
   @override
@@ -122,7 +124,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
           // 組み合わせ変更ボタン
           IconButton(
             onPressed: () {
-              randomChoiceMatchMembers();
+              chooseMatchMembers();
             },
             icon: const Icon(Icons.change_circle),
             iconSize: 60,
@@ -152,7 +154,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
                   builder: (_) {
                     return NextMatchDialog(
                       recordPlayCount: recordPlayCount,
-                      randomChoiceMatchMembers: randomChoiceMatchMembers,
+                      chooseMatchMembers: chooseMatchMembers,
                       incrementMatchCount: incrementMatchCount,
                     );
                   },
@@ -195,19 +197,27 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
     });
   }
 
-  void randomChoiceMatchMembers() {
+  void chooseMatchMembers() {
     // 参加メンバーの中からランダムに抽出する
-    List<MatchMembers> newMatchMembersList = [];
-    widget.joinMembers.shuffle();
-    for (int i = 0; i < widget.courtCount; i++) {
-      MatchMembers matchMember = MatchMembers(
-        widget.joinMembers.sublist(i * 4, (i + 1) * 4),
-      );
-      newMatchMembersList.add(matchMember);
-      setState(() {
-        matchMembersList = newMatchMembersList;
-      });
-    }
+    List<MatchMembers> newMatchMembersList =
+        // SelcectRandomMemberStrategy()
+        selectBalanceJoinCountStrategy()
+            .select(widget.joinMembers, widget.courtCount);
+
+    setState(() {
+      matchMembersList = newMatchMembersList;
+    });
+    // List<MatchMembers> newMatchMembersList = [];
+    // widget.joinMembers.shuffle();
+    // for (int i = 0; i < widget.courtCount; i++) {
+    //   MatchMembers matchMember = MatchMembers(
+    //     widget.joinMembers.sublist(i * 4, (i + 1) * 4),
+    //   );
+    //   newMatchMembersList.add(matchMember);
+    //   setState(() {
+    //     matchMembersList = newMatchMembersList;
+    //   });
+    // }
   }
 
   void incrementMatchCount() {
