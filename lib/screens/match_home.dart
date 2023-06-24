@@ -17,6 +17,7 @@ class MatchHomePage extends StatefulWidget {
 class _MatchHomePageState extends State<MatchHomePage> {
   // 練習参加者
   List<PlayingMember> _joinMembers = [];
+
   // 練習開始済みのフラグ
   bool _isStarted = false;
   // コート数

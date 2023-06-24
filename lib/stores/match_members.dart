@@ -24,6 +24,12 @@ class MatchMembers {
     return _matchPair1.getAllMembers() + _matchPair2.getAllMembers();
   }
 
+  String getMatchMembersString() {
+    List<PlayingMember> allMembers = getAllMembers();
+    allMembers.sort((a, b) => a.id.compareTo(b.id));
+    return allMembers.map((e) => e.id.toString()).toList().join('');
+  }
+
   PlayingMember getMemberByPosition(int position) {
     assert(position <= 3);
     if (position == 0) {
