@@ -139,21 +139,21 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
               if (existEmptyMember()) {
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.3),
+                    barrierColor: Colors.white.withOpacity(0.1),
                     builder: (_) {
                       return GeneralErrorDialog(message: 'メンバーが選択されていません');
                     });
               } else if (existSameMembers()) {
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.3),
+                    barrierColor: Colors.white.withOpacity(0.1),
                     builder: (_) {
                       return GeneralErrorDialog(message: 'メンバーが重複しています');
                     });
               } else {
                 showDialog<void>(
                   context: context,
-                  barrierColor: Colors.white.withOpacity(0.3),
+                  barrierColor: Colors.white.withOpacity(0.1),
                   builder: (_) {
                     return NextMatchDialog(
                       recordPlayCount: recordPlayCount,
@@ -173,7 +173,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
             onPressed: () {
               showDialog<void>(
                 context: context,
-                barrierColor: Colors.white.withOpacity(0.3),
+                barrierColor: Colors.white.withOpacity(0.1),
                 builder: (_) {
                   return MatchFinishDialog(
                     resetPractice: widget.resetPractice,

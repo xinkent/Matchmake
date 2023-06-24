@@ -55,7 +55,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
             if (_courtCount == null) {
               showDialog<void>(
                   context: context,
-                  barrierColor: Colors.white.withOpacity(0.3),
+                  barrierColor: Colors.white.withOpacity(0.1),
                   builder: (_) {
                     return GeneralErrorDialog(message: "コート数が設定されていません");
                   });
@@ -75,7 +75,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
                 // 設定人数が足りない場合
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.3),
+                    barrierColor: Colors.white.withOpacity(0.1),
                     builder: (_) {
                       return GeneralErrorDialog(message: "設定人数が足りません");
                     });
@@ -83,7 +83,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
                 // 設定OKの場合
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.3),
+                    barrierColor: Colors.white.withOpacity(0.1),
                     builder: (_) {
                       return MatchSettingNextDialog(
                         joinMembers: joinMembers,
