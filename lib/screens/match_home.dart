@@ -7,6 +7,8 @@ import 'package:matchmake/screens/member_list.dart';
 import 'package:matchmake/stores/member.dart';
 import 'package:matchmake/stores/playing_member.dart';
 
+import 'help.dart';
+
 class MatchHomePage extends StatefulWidget {
   const MatchHomePage({super.key});
 
@@ -17,6 +19,7 @@ class MatchHomePage extends StatefulWidget {
 class _MatchHomePageState extends State<MatchHomePage> {
   // 練習参加者
   List<PlayingMember> _joinMembers = [];
+
   // 練習開始済みのフラグ
   bool _isStarted = false;
   // コート数
@@ -48,6 +51,11 @@ class _MatchHomePageState extends State<MatchHomePage> {
             IconButton(
               icon: const Icon(Icons.history),
               onPressed: navigateToMatchHistoryPage,
+            ),
+          if (!_isStarted)
+            IconButton(
+              icon: const Icon(Icons.help),
+              onPressed: navigateToHelpPage,
             )
         ],
       ),
@@ -119,6 +127,11 @@ class _MatchHomePageState extends State<MatchHomePage> {
     final route = MaterialPageRoute(
       builder: (context) => MatchHistoryPage(playingMembers: _joinMembers),
     );
+    await Navigator.of(context).push(route);
+  }
+
+  Future<void> navigateToHelpPage() async {
+    final route = MaterialPageRoute(builder: (context) => HelpPage());
     await Navigator.of(context).push(route);
   }
 }

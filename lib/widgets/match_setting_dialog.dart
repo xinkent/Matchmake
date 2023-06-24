@@ -35,7 +35,7 @@ class MatchSettingNextDialog extends StatelessWidget {
         ),
         CupertinoDialogAction(
           child: Text('いいえ'),
-          isDestructiveAction: true,
+          isDestructiveAction: false,
           onPressed: () {
             Navigator.of(context).pop();
           },

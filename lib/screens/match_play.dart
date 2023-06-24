@@ -29,6 +29,9 @@ class MatchPlayPage extends StatefulWidget {
 class _MatchPlayPageState extends State<MatchPlayPage> {
   // 試合参加メンバー(コート数 x 4人)
   late List<MatchMembers> matchMembersList;
+  // 試合組履歴
+  List<String> matchHistory = [];
+  // 第X試合
   int matchCount = 0;
 
   @override
@@ -136,21 +139,21 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
               if (existEmptyMember()) {
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.3),
+                    barrierColor: Colors.white.withOpacity(0.1),
                     builder: (_) {
                       return GeneralErrorDialog(message: 'メンバーが選択されていません');
                     });
               } else if (existSameMembers()) {
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.3),
+                    barrierColor: Colors.white.withOpacity(0.1),
                     builder: (_) {
                       return GeneralErrorDialog(message: 'メンバーが重複しています');
                     });
               } else {
                 showDialog<void>(
                   context: context,
-                  barrierColor: Colors.white.withOpacity(0.3),
+                  barrierColor: Colors.white.withOpacity(0.1),
                   builder: (_) {
                     return NextMatchDialog(
                       recordPlayCount: recordPlayCount,
@@ -170,7 +173,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
             onPressed: () {
               showDialog<void>(
                 context: context,
-                barrierColor: Colors.white.withOpacity(0.3),
+                barrierColor: Colors.white.withOpacity(0.1),
                 builder: (_) {
                   return MatchFinishDialog(
                     resetPractice: widget.resetPractice,
@@ -202,7 +205,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
     List<MatchMembers> newMatchMembersList =
         // SelcectRandomMemberStrategy()
         selectBalanceJoinCountStrategy()
-            .select(widget.joinMembers, widget.courtCount);
+            .select(widget.joinMembers, widget.courtCount, matchHistory);
 
     setState(() {
       matchMembersList = newMatchMembersList;
@@ -229,6 +232,10 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
   void recordPlayCount() {
     setState(() {
       for (MatchMembers matchMembers in matchMembersList) {
+        // 試合組履歴に追加
+        matchHistory.add(matchMembers.getMatchMembersString());
+
+        // 各参加者の試合回数カウントをインクリメント
         for (PlayingMember member in matchMembers.getAllMembers()) {
           member.incremetPlayCount();
         }

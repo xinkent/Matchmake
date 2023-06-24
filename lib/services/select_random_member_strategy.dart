@@ -5,8 +5,8 @@ import '../stores/playing_member.dart';
 
 class SelcectRandomMemberStrategy implements SelectMemberStrategy {
   @override
-  List<MatchMembers> select(
-      List<PlayingMember> playingMembers, int courtCount) {
+  List<MatchMembers> select(List<PlayingMember> playingMembers, int courtCount,
+      List<String> matchHistory) {
     List<MatchMembers> newMatchMembersList = [];
     playingMembers.shuffle();
     for (int i = 0; i < courtCount; i++) {
