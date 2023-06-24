@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:matchmake/stores/match_members.dart';
 
 class NextMatchDialog extends StatelessWidget {
-  final Function() randomChoiceMatchMembers;
+  final Function() chooseMatchMembers;
   final Function() incrementMatchCount;
   final Function() recordPlayCount;
   const NextMatchDialog({
     super.key,
-    required this.randomChoiceMatchMembers,
+    required this.chooseMatchMembers,
     required this.incrementMatchCount,
     required this.recordPlayCount,
   });
@@ -21,7 +21,7 @@ class NextMatchDialog extends StatelessWidget {
             child: Text('はい'),
             onPressed: () {
               recordPlayCount();
-              randomChoiceMatchMembers();
+              chooseMatchMembers();
               incrementMatchCount();
               Navigator.of(context).pop();
             },
