@@ -26,7 +26,7 @@ class MatchNotStartedPage extends StatelessWidget {
           SizedBox(
             width: 200,
             height: 50,
-            child: ElevatedButton(
+            child: FilledButton(
               onPressed: () => navigateToMatchSettingPage(context),
               child: const Text('練習を開始する'),
             ),
@@ -38,7 +38,7 @@ class MatchNotStartedPage extends StatelessWidget {
           SizedBox(
             width: 200,
             height: 50,
-            child: ElevatedButton(
+            child: FilledButton(
               onPressed: () => navigateToMemberListPage(),
               child: const Text('メンバーを追加する'),
             ),
