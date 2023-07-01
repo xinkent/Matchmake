@@ -6,9 +6,13 @@ class selectBalanceJoinCountStrategy implements SelectMemberStrategy {
   @override
   List<MatchMembers> select(List<PlayingMember> playingMembers, int courtCount,
       List<String> matchHistory) {
-    // 練習参加者を参加回数が少ない順に並び替え、上位の参加者を抽出する。
+    // 練習参加者を参加回数が少ない順、連続休み回数が多い順に並び替え、上位の参加者を抽出する。
     playingMembers.shuffle();
-    playingMembers.sort((a, b) => a.getPlayCount().compareTo(b.getPlayCount()));
+    playingMembers.sort((a, b) {
+      int result = a.getPlayCount().compareTo(b.getPlayCount());
+      if (result != 0) return result;
+      return b.getConsecutiveRestCount().compareTo(a.getConsecutiveRestCount());
+    });
     List<PlayingMember> nextPlayMembers =
         playingMembers.sublist(0, courtCount * 4);
 
