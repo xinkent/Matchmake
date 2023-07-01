@@ -231,13 +231,19 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
 
   void recordPlayCount() {
     setState(() {
+      // 練習参加者全員の休憩カウントをインクリメントするが、
+      // 試合参加者は直後の処理でリセットされるので、試合参加者以外の休憩カウントがインクリメントされることになる。
+      for (PlayingMember member in widget.joinMembers) {
+        member.incrementRestCount();
+      }
       for (MatchMembers matchMembers in matchMembersList) {
         // 試合組履歴に追加
         matchHistory.add(matchMembers.getMatchMembersString());
 
-        // 各参加者の試合回数カウントをインクリメント
+        // 各参加者の試合回数カウントをインクリメントし、休憩回数をリセットする。
         for (PlayingMember member in matchMembers.getAllMembers()) {
           member.incremetPlayCount();
+          member.resetRestCount();
         }
       }
     });
