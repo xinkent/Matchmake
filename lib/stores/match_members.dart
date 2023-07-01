@@ -55,4 +55,12 @@ class MatchMembers {
       getMatchPair2().setMember2(newMember);
     }
   }
+
+  int getMaleMemberCount() {
+    return getAllMembers().where((e) => e.sex == Sex.male).toList().length;
+  }
+
+  int getFemaleMemberCount() {
+    return getAllMembers().where((e) => e.sex == Sex.female).toList().length;
+  }
 }
