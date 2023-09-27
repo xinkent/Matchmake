@@ -50,12 +50,18 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('試合設定'), actions: [
         TextButton(
-          child: const Text('次へ'),
+          child: const Text(
+            '次へ',
+            style: TextStyle(
+                fontSize: 15.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+          ),
           onPressed: () {
             if (_courtCount == null) {
               showDialog<void>(
                   context: context,
-                  barrierColor: Colors.white.withOpacity(0.1),
+                  barrierColor: Colors.grey.withOpacity(0.6),
                   builder: (_) {
                     return GeneralErrorDialog(message: "コート数が設定されていません");
                   });
@@ -75,7 +81,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
                 // 設定人数が足りない場合
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.1),
+                    barrierColor: Colors.grey.withOpacity(0.6),
                     builder: (_) {
                       return GeneralErrorDialog(message: "設定人数が足りません");
                     });
@@ -83,7 +89,7 @@ class _MatchSettingPageState extends State<MatchSettingPage> {
                 // 設定OKの場合
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.1),
+                    barrierColor: Colors.grey.withOpacity(0.6),
                     builder: (_) {
                       return MatchSettingNextDialog(
                         joinMembers: joinMembers,

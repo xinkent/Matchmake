@@ -24,6 +24,13 @@ class MatchSettingNextDialog extends StatelessWidget {
       title: Text('この設定で練習を開始しますか？'),
       actions: <Widget>[
         CupertinoDialogAction(
+          child: Text('いいえ'),
+          isDestructiveAction: false,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        CupertinoDialogAction(
           child: Text('はい'),
           onPressed: () {
             updateJoinMembers(joinMembers);
@@ -33,13 +40,6 @@ class MatchSettingNextDialog extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        CupertinoDialogAction(
-          child: Text('いいえ'),
-          isDestructiveAction: false,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        )
       ],
     );
   }

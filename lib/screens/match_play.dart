@@ -46,7 +46,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
       SizedBox(height: 10),
       Text(
         '第${matchCount + 1}試合',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        style: TextStyle(fontWeight: FontWeight.bold),
       ),
       Flexible(
         child: ListView.separated(
@@ -55,12 +55,15 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
             final matchMembers = matchMembersList[index];
             return Column(
               children: [
-                Text('コート ${index + 1}'),
+                Text(
+                  'コート ${index + 1}',
+                  // style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      height: 150,
+                      height: 120,
                       width: 150,
                       child: Card(
                         child: Column(
@@ -86,7 +89,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
                     ),
                     Icon(Icons.close),
                     SizedBox(
-                      height: 150,
+                      height: 120,
                       width: 150,
                       child: Card(
                         child: Column(
@@ -117,7 +120,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
           },
           padding: const EdgeInsets.all(10),
           separatorBuilder: (BuildContext context, int index) => const Divider(
-            thickness: 2,
+            thickness: 1,
           ),
         ),
       ),
@@ -139,21 +142,21 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
               if (existEmptyMember()) {
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.1),
+                    barrierColor: Colors.grey.withOpacity(0.6),
                     builder: (_) {
                       return GeneralErrorDialog(message: 'メンバーが選択されていません');
                     });
               } else if (existSameMembers()) {
                 showDialog<void>(
                     context: context,
-                    barrierColor: Colors.white.withOpacity(0.1),
+                    barrierColor: Colors.grey.withOpacity(0.6),
                     builder: (_) {
                       return GeneralErrorDialog(message: 'メンバーが重複しています');
                     });
               } else {
                 showDialog<void>(
                   context: context,
-                  barrierColor: Colors.white.withOpacity(0.1),
+                  barrierColor: Colors.grey.withOpacity(0.6),
                   builder: (_) {
                     return NextMatchDialog(
                       recordPlayCount: recordPlayCount,
@@ -173,7 +176,7 @@ class _MatchPlayPageState extends State<MatchPlayPage> {
             onPressed: () {
               showDialog<void>(
                 context: context,
-                barrierColor: Colors.white.withOpacity(0.1),
+                barrierColor: Colors.grey.withOpacity(0.6),
                 builder: (_) {
                   return MatchFinishDialog(
                     resetPractice: widget.resetPractice,

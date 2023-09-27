@@ -74,10 +74,10 @@ class MatchDropdown extends StatelessWidget {
         child: Text(
           member.name,
           style: TextStyle(
-            color: member.sex == Sex.male
-                ? Color.fromARGB(255, 131, 187, 236)
-                : Color.fromARGB(255, 242, 180, 162),
-          ),
+              color: member.sex == Sex.male
+                  ? Color.fromARGB(255, 1, 86, 160)
+                  : Color.fromARGB(255, 238, 57, 2),
+              fontSize: 18),
         ));
     return dropDownItem;
   }

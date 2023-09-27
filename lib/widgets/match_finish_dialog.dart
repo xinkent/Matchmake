@@ -13,15 +13,15 @@ class MatchFinishDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(title: Text('練習を終了しますか？'), actions: <Widget>[
       CupertinoDialogAction(
-        child: Text('はい'),
+        child: Text('いいえ'),
         onPressed: () {
-          resetPractice();
           Navigator.of(context).pop();
         },
       ),
       CupertinoDialogAction(
-        child: Text('いいえ'),
+        child: Text('はい'),
         onPressed: () {
+          resetPractice();
           Navigator.of(context).pop();
         },
       ),

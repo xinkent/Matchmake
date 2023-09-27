@@ -18,6 +18,12 @@ class NextMatchDialog extends StatelessWidget {
         title: Text('この試合を記録し、次の試合を始めますか？'),
         actions: <Widget>[
           CupertinoDialogAction(
+            child: Text('いいえ'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          CupertinoDialogAction(
             child: Text('はい'),
             onPressed: () {
               recordPlayCount();
@@ -26,12 +32,6 @@ class NextMatchDialog extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
-          CupertinoDialogAction(
-            child: Text('いいえ'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )
         ]);
   }
 }
